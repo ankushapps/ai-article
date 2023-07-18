@@ -17,7 +17,7 @@ const CreateContentButton = ({fixture_id, showEditorClick}) => {
             }).then(function (response) {
                 setLoading(false)
                 console.log(response.data.body);
-                showEditorClick(response.data.body)
+                showEditorClick(response.data.body, fixture_id)
 
                 // setMatches(response.data)
             })
