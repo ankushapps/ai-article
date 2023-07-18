@@ -142,12 +142,12 @@ const [editorInstance, setEditorInstance] =useState(null)
         editorInstance.data = DEFAULT_INITIAL_DATA;
     }
 
-    const initEditor = async () => {
-        const editor = await new EditorJS({
+    const initEditor = () => {
+        const editor = new EditorJS({
             holder: EDITTOR_HOLDER_ID,
             logLevel: "ERROR",
             data: editorData,
-            onReady: () => {
+            onReady: async (edt) => {
                 ejInstance.current = editor;
                 setEditorInstance(editor)
             },
@@ -171,7 +171,7 @@ const [editorInstance, setEditorInstance] =useState(null)
                 <Stack spacing={2} direction='row'><Button size='medium' variant='outlined' onClick={hideEditor}>
                     Back To Matches
                 </Button>
-                <TextField id="outlined-basic" label="Prompt" variant="outlined" value={prompt} focused />
+                <TextField onChange={(e) => setPrompt(e.target.value)} id="outlined-basic" label="Prompt" variant="outlined" value={prompt} focused />
                 <Button size='medium' variant='contained' color='error' onClick={generateNewContent}>
                     Generate New Content
                 </Button>
